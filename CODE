@@ -1,31 +1,29 @@
 import java.util.Scanner;
 import java.util.Stack;
 
-public class UndoSimulation {
+public class WordReversal {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Stack<String> actions = new Stack<>();
+        Stack<String> wordStack = new Stack<>();
 
-        while (true) {
-            System.out.println("Enter an action (type 'undo' or 'exit'):");
-            String input = scanner.nextLine().trim();
+        System.out.println("Enter a sentence, meow:");
+        String input = scanner.nextLine();
+        scanner.close();
 
-            if (input.equalsIgnoreCase("exit")) {
-                System.out.println("Exiting the program, Bye Meow!");
-                break;
-            } else if (input.equalsIgnoreCase("undo")) {
-                if (!actions.isEmpty()) {
-                    String undoneAction = actions.pop();
-                    System.out.println("You unhitched: \"" + undoneAction + "\"");
-                } else {
-                    System.out.println("No actions to undo, Meow Meow!");
-                }
-            } else {
-                actions.push(input);
-                System.out.println("Action recorded: \"" + input + "\"");
-            }
+      
+        String[] words = input.split("\\s+");
+        for (String word : words) {
+            wordStack.push(word);
         }
 
-        scanner.close();
+
+        System.out.println("Reversed sentence:");
+        while (!wordStack.isEmpty()) {
+            System.out.print(wordStack.pop());
+            if (!wordStack.isEmpty()) {
+                System.out.print(" ");
+            }
+        }
+        System.out.println(); 
     }
 }
